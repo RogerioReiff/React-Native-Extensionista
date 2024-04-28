@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import AdmLandingPage from './AdmLandingPage';
 import ClientLandingPage from './ClientLandingPage';
 
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
 
 export default function LoginToLandPage({navigation}){
 
@@ -13,14 +16,14 @@ export default function LoginToLandPage({navigation}){
 
     return(
       clientOrAdm?(
-            <Tab.Navigator>
-                <Tab.Screen name="AdmLandingPage" component={AdmLandingPage}/>
-            </Tab.Navigator>
+            <Drawer.Navigator>
+                <Drawer.Screen name="AdmLandingPage" component={AdmLandingPage}/>
+            </Drawer.Navigator>
         ):
         (
-            <Tab.Navigator>
-                <Tab.Screen name="ClientLandingPage" component={ClientLandingPage}/>
-            </Tab.Navigator>
+            <Drawer.Navigator>
+                <Drawer.Screen name="ClientLandingPage" component={ClientLandingPage}/>
+            </Drawer.Navigator>
         )
     );
 }

@@ -9,7 +9,7 @@ export default function AdmLandingPage(){
 
     return(
 
-        <View>VERD ADMIN</View>
+        <View><Text>ADM</Text></View>
     );
 
 }

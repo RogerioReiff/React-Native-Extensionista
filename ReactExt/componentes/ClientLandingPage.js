@@ -8,6 +8,6 @@ export default function ClientLandingPage(){
     const [clientOrAdm, setCOA] = useState(false);
 
     return(
-      <View>VERD CLIENTE</View>
+      <View><Text>CLIENT</Text></View>
     );
 }

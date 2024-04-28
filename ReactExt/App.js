@@ -1,12 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { FlatListComponent, StyleSheet, Text, View } from 'react-native';
 import { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './componentes/Login.js';
 import LoginToLandPage from './componentes/LoginToLandPage.js';
 
+const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -15,9 +17,9 @@ export default function App() {
   return (
    logged?(
     <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="LoginToLandPage" component={LoginToLandPage}/>
-        </Stack.Navigator>
+        <Tab.Navigator>
+          <Tab.Screen name="LoginToLandPage" component={LoginToLandPage} options={{headerShown:false}}/>
+        </Tab.Navigator>
     </NavigationContainer>
     ):(
       <NavigationContainer>
