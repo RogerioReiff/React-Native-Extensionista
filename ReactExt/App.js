@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './componentes/Login.js';
 import LoginToLandPage from './componentes/LoginToLandPage.js';
+import MenuClientPerfil from './componentes/MenuClientPerfil.js';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -18,7 +19,7 @@ export default function App() {
    logged?(
     <NavigationContainer>
         <Tab.Navigator>
-          <Tab.Screen name="LoginToLandPage" component={LoginToLandPage} options={{headerShown:false}}/>
+          <Tab.Screen name="LoginToLandPage" component={LoginToLandPage} options={{headerShown:false}} initialParams={{funcLogar : setLogged}}/>
         </Tab.Navigator>
     </NavigationContainer>
     ):(
