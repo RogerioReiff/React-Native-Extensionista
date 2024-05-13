@@ -5,11 +5,12 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export default function AdmLandingPage(){
 
-    const [clientOrAdm, setCOA] = useState(false);
-
     return(
 
-        <View><Text>ADM</Text></View>
+        <View>
+            <Text>Carros na Oficina</Text>
+            <Text>Coloque uma flatlist com a placa do carro - modelo - nome cliente - e estado, se está pronto ou não</Text>
+        </View>
     );
 
 }

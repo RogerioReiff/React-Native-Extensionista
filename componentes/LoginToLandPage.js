@@ -1,6 +1,3 @@
-import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import AdmLandingPage from './AdmLandingPage';
 import MenuAdmPerfil from './MenuAdmPerfil';

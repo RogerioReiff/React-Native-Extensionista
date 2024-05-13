@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Login({navigation, route}){
 
-    //TODO: O iCPF e iPswd retorno primeiro o valor nulo e depois o valor digitado pelo usuario, para CONSERTAR?
+    //TODO: O iCPF e iPswd retorno primeiro o valor nulo e depois o valor digitado pelo usuario, para CONSERTAR
 
     const [iCPF, setInputCPF] = useState('');
     const [iPswd, setInputPswd] = useState('');
@@ -19,13 +19,13 @@ export default function Login({navigation, route}){
         catch(error){
             console.log(error)
         }
-    } 
+    }
 
     const getData = async () =>{
         try{
-
-           await AsyncStorage.getItem('UsersData').then(JSON.parse).then(value =>{setValueCPF(value.CPF)});
-           await AsyncStorage.getItem('UsersData').then(JSON.parse).then(value =>{setValuePswd(value.PASSWORD)});
+           
+            await AsyncStorage.getItem('UsersData').then(JSON.parse).then(value =>{setValueCPF(value.CPF)});
+            await AsyncStorage.getItem('UsersData').then(JSON.parse).then(value =>{setValuePswd(value.PASSWORD)});
 
            if(valueCPF === iCPF && valuePswd === iPswd && iCPF.length !== 0){
             route.params.funcLogar(true)
@@ -45,7 +45,7 @@ export default function Login({navigation, route}){
             <Text style={styles.textTitle}>Login</Text>
 
             <Text style={styles.textBox}>CPF</Text>
-            <TextInput style={styles.inputBox} placeholder="00000000000" onChangeText={(value) => {setInputCPF(value)}} autoCorrect={false} autoCapitalize='none'/>
+            <TextInput style={styles.inputBox} placeholder="000.000.000-00" onChangeText={(value) => {setInputCPF(value)}} autoCorrect={false} autoCapitalize='none'/>
 
             <Text style={styles.textBox}>Senha</Text>
             <TextInput style={styles.inputBox} placeholder="Senha" /* secureTextEntry */ onChangeText={(value)=>{setInputPswd(value)}} autoCorrect={false} autoCapitalize='none'/>
