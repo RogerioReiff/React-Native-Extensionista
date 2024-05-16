@@ -8,8 +8,6 @@ export default function Login({navigation, route}){
 
     const [iCPF, setInputCPF] = useState('');
     const [iPswd, setInputPswd] = useState('');
-    const [valueCPF, setValueCPF] = useState('');
-    const [valuePswd, setValuePswd] = useState('');
 
     const setData = async () =>{
         try{
@@ -23,11 +21,14 @@ export default function Login({navigation, route}){
 
     const getData = async () =>{
         try{
-           
-            await AsyncStorage.getItem('UsersData').then(JSON.parse).then(value =>{setValueCPF(value.CPF)});
-            await AsyncStorage.getItem('UsersData').then(JSON.parse).then(value =>{setValuePswd(value.PASSWORD)});
 
-           if(valueCPF === iCPF && valuePswd === iPswd && iCPF.length !== 0){
+            var valCPF;
+            var valPswd;
+           
+            await AsyncStorage.getItem('UsersData').then(JSON.parse).then(value =>{valCPF = value.CPF});
+            await AsyncStorage.getItem('UsersData').then(JSON.parse).then(value =>{valPswd = value.PASSWORD});
+
+           if(valCPF === iCPF && valPswd === iPswd && iCPF.length !== 0){
             route.params.funcLogar(true)
            }else{
             alert("Login invalido")
@@ -51,7 +52,6 @@ export default function Login({navigation, route}){
             <TextInput style={styles.inputBox} placeholder="Senha" /* secureTextEntry */ onChangeText={(value)=>{setInputPswd(value)}} autoCorrect={false} autoCapitalize='none'/>
 
             <Button title='Logar' style={{paddingTop: 10, margin: 15, alignItems: 'center', height:40}} onPress={getData}/>
-            <Button title='Logar' style={{paddingTop: 10, margin: 15, alignItems: 'center', height:40}} onPress={route.params.funcLogar(true)}/>
 
             <TouchableOpacity style={{paddingTop: 10, textAlign: 'center'}} onPress={setData}>
                 <Text>Esqueceu a senha?</Text>
