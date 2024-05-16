@@ -13,7 +13,6 @@ export default function ListFunc(){
         const keys = await AsyncStorage.getAllKeys();
         const values = await AsyncStorage.multiGet(keys);
         setFunc(values);
-        console.log(func);
        }
        catch(error)
        {

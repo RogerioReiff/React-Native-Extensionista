@@ -7,11 +7,12 @@ export default function CadFunc(){
 
   const [iCPF, setInputCPF] = useState('');
   const [iPswd, setInputPswd] = useState('');
+  const [iName, setInputName] = useState('');
 
   const setData = async () =>{
     try{
-        var user = {CPF: iCPF, PASSWORD: iPswd, key: Math.random()}
-        await AsyncStorage.setItem('UsersData', JSON.stringify(user));
+        var user = {NAME: iName, PASSWORD: iPswd}
+        await AsyncStorage.setItem(iCPF, JSON.stringify(user));
     }
     catch(error){
         console.log(error)
@@ -19,7 +20,7 @@ export default function CadFunc(){
 }
 
   const checkEmpty = async()=>{
-    if(iCPF === null && iPswd === null){
+    if(iCPF === null && iPswd === null && iName === null){
       alert("Preencha o formulario")
     }else{
       setData();
@@ -32,6 +33,9 @@ export default function CadFunc(){
 
         <Text>CPF</Text>
         <TextInput placeholder="000.000.000-00" onChangeText={(value) => {setInputCPF(value)}} autoCorrect={false} autoCapitalize='none'/>
+
+        <Text>Nome Completo</Text>
+        <TextInput placeholder="Nome Sobrenome" onChangeText={(value)=>{setInputName(value)}} autoCorrect={false} autoCapitalize='none'/>
 
         <Text>Senha</Text>
         <TextInput placeholder="Senha" /* secureTextEntry */ onChangeText={(value)=>{setInputPswd(value)}} autoCorrect={false} autoCapitalize='none'/>

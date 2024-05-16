@@ -11,8 +11,8 @@ export default function Login({navigation, route}){
 
     const setData = async () =>{
         try{
-            var user = {CPF: iCPF, PASSWORD: iPswd, key: Math.random()}
-            await AsyncStorage.setItem('UsersData', JSON.stringify(user));
+            var user = {NAME: 'Admin', PASSWORD: iPswd}
+            await AsyncStorage.setItem(iCPF, JSON.stringify(user));
         }
         catch(error){
             console.log(error)
@@ -25,10 +25,17 @@ export default function Login({navigation, route}){
             var valCPF;
             var valPswd;
            
-            await AsyncStorage.getItem('UsersData').then(JSON.parse).then(value =>{valCPF = value.CPF});
-            await AsyncStorage.getItem('UsersData').then(JSON.parse).then(value =>{valPswd = value.PASSWORD});
+            const value = await AsyncStorage.getItem(iCPF).then(JSON.parse);
+            if(value !== null){
+                valCPF = iCPF;
+            }
+            else{
+                alert("Login Invalido")
+            }
 
-           if(valCPF === iCPF && valPswd === iPswd && iCPF.length !== 0){
+            valPswd = value.PASSWORD;
+
+           if(valCPF === iCPF && valPswd === iPswd){
             route.params.funcLogar(true)
            }else{
             alert("Login invalido")
