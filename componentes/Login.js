@@ -13,7 +13,7 @@ export default function Login({navigation, route}){
 
     const setData = async () =>{
         try{
-            var user = {CPF: iCPF, PASSWORD: iPswd, key: 0}
+            var user = {CPF: iCPF, PASSWORD: iPswd, key: Math.random()}
             await AsyncStorage.setItem('UsersData', JSON.stringify(user));
         }
         catch(error){
@@ -51,6 +51,7 @@ export default function Login({navigation, route}){
             <TextInput style={styles.inputBox} placeholder="Senha" /* secureTextEntry */ onChangeText={(value)=>{setInputPswd(value)}} autoCorrect={false} autoCapitalize='none'/>
 
             <Button title='Logar' style={{paddingTop: 10, margin: 15, alignItems: 'center', height:40}} onPress={getData}/>
+            <Button title='Logar' style={{paddingTop: 10, margin: 15, alignItems: 'center', height:40}} onPress={route.params.funcLogar(true)}/>
 
             <TouchableOpacity style={{paddingTop: 10, textAlign: 'center'}} onPress={setData}>
                 <Text>Esqueceu a senha?</Text>

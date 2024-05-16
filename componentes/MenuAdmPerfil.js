@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Pressable, Modal, Button } from 'react-native';
 import CadFunc from './CadFunc';
+import ListFunc from './ListFunc';
 
 
 export default function MenuAdmPerfil({route}){
@@ -10,8 +11,14 @@ export default function MenuAdmPerfil({route}){
 
     return(
       <View>
+        <Pressable onPress={() => (setModalFun(true))}>
+          <Text>Funcionarios</Text>
+        </Pressable>
 
-        <Text>Funcionarios</Text>
+        <Modal visible={modalFun}>
+          <ListFunc/>
+          <Button title='Sair' onPress={()=>(setModalFun(false))}/>
+        </Modal>
 
         <Pressable onPress={() => (setModalCad(true))}>
           <Text>Cadastrar Funcionarios</Text>

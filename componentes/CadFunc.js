@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-export default function CadFunc(props){
+export default function CadFunc(){
 
   const [iCPF, setInputCPF] = useState('');
   const [iPswd, setInputPswd] = useState('');
