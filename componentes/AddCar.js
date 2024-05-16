@@ -3,12 +3,12 @@ import { StyleSheet, Text, View } from 'react-native';
 
 
 
-export default function SearchCar(){
+export default function AddCar(){
 
     return(
 
         <View>
-            <Text>Procurar Carros</Text>
+            <Text>Adicionar Carros</Text>
 
             <Text>Placa do Carro</Text>
             
