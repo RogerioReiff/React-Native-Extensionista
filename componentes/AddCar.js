@@ -10,11 +10,11 @@ export default function AddCar(){
         <View>
             <Text>Adicionar Carros</Text>
 
-            <Text>Placa do Carro</Text>
+            <Text>CPF Cliente</Text>
             
             <Text>Modelo</Text>
 
-            <Text>CPF Cliente</Text>
+            <Text>Placa do Carro</Text>
 
             <Text>Estado</Text>
         </View>
