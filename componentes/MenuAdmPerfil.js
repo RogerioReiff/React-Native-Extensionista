@@ -1,28 +1,17 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Pressable, Modal, Button } from 'react-native';
 import CadFunc from './CadFunc';
-import ListFunc from './ListFunc';
 import AddCar from './AddCar';
 
 
 export default function MenuAdmPerfil({route}){
 
    const [modalCad, setModalCad] = useState(false);
-   const [modalFun, setModalFun] = useState(false);
    const [modalAddCar, setModalAC] = useState(false);
    const [modalSearchCar, setModalSC] = useState(false);
 
     return(
       <View>
-        <Pressable onPress={() => (setModalFun(true))}>
-          <Text>Funcionarios</Text>
-        </Pressable>
-
-        <Modal visible={modalFun}>
-          <ListFunc/>
-          <Button title='Sair' onPress={()=>(setModalFun(false))}/>
-        </Modal>
-
         <Pressable onPress={() => (setModalCad(true))}>
           <Text>Cadastrar Funcionarios</Text>
         </Pressable>
