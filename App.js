@@ -6,6 +6,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './componentes/Login.js';
 import LoginToLandPage from './componentes/LoginToLandPage.js';
+import AddCar from './componentes/AddCar';
+import SearchCar from './componentes/SearchCars'
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -17,7 +19,9 @@ export default function App() {
    logged?(
     <NavigationContainer>
         <Tab.Navigator>
+          <Tab.Screen name="AddCar" component={AddCar}/>
           <Tab.Screen name="LoginToLandPage" component={LoginToLandPage} options={{headerShown:false}} initialParams={{funcLogar : setLogged}}/>
+          <Tab.Screen name="SearchCar" component={SearchCar}/>
         </Tab.Navigator>
     </NavigationContainer>
     ):(

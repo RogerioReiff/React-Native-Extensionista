@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function AddCar(){
 
-    const fs = require('fs');
+   /*  const fs = require('fs');
 
     const add = ()=>{
         let prod1 = null;
@@ -20,8 +18,7 @@ export default function AddCar(){
                 let prodStr = JSON.stringify(prod1);
                 fs.writeFileSync('prod1.json',prodStr);
             }
-        }
-
+        } */
 
     return(
 
@@ -36,7 +33,7 @@ export default function AddCar(){
 
             <Text>Estado</Text>
 
-            <Button title='adicionar' onPress={add}/>
+            <Button title='adicionar'/>
         </View>
     );
 
