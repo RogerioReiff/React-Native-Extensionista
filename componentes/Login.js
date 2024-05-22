@@ -9,15 +9,32 @@ export default function Login({navigation, route}){
     const [iCPF, setInputCPF] = useState('');
     const [iPswd, setInputPswd] = useState('');
 
-    const setData = async () =>{
+    const setFirstTime = async () =>{
         try{
-            var user = {NAME: 'Admin', PASSWORD: iPswd}
-            await AsyncStorage.setItem(iCPF, JSON.stringify(user));
+            const dgt = await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, 'Admin');
+            var user = {NAME: 'Admin', PASSWORD: dgt}
+            await AsyncStorage.setItem('Admin', JSON.stringify(user));
         }
         catch(error){
             console.log(error)
         }
     }
+
+    const checkIfExists = async ()=>{
+        try{
+            const check = await AsyncStorage.getItem('Admin')
+            if(check === null){
+                throw error
+            }
+        }
+        catch(error){
+            setFirstTime();
+        }
+     }
+
+     useEffect(()=>{
+        checkIfExists()
+    },[]);
 
     const getData = async () =>{
         try{
@@ -61,10 +78,6 @@ export default function Login({navigation, route}){
             <TextInput style={styles.inputBox} placeholder="Senha" /* secureTextEntry */ onChangeText={(value)=>{setInputPswd(value)}} autoCorrect={false} autoCapitalize='none'/>
 
             <Button title='Logar' style={{paddingTop: 10, margin: 15, alignItems: 'center', height:40}} onPress={getData}/>
-
-            <TouchableOpacity style={{paddingTop: 10, textAlign: 'center'}} onPress={setData}>
-                <Text>Esqueceu a senha?</Text>
-            </TouchableOpacity>
 
         </View>
     );
