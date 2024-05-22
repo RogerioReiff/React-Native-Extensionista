@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Crypto from 'expo-crypto';
 
 export default function Login({navigation, route}){
 
@@ -22,6 +23,8 @@ export default function Login({navigation, route}){
     const getData = async () =>{
         try{
 
+            const digest = await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, iPswd);
+
             var valCPF;
             var valPswd;
            
@@ -35,7 +38,7 @@ export default function Login({navigation, route}){
 
             valPswd = value.PASSWORD;
 
-           if(valCPF === iCPF && valPswd === iPswd){
+           if(valCPF === iCPF && valPswd === digest){
             route.params.funcLogar(true)
            }else{
             alert("Login invalido")
