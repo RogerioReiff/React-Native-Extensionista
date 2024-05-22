@@ -7,7 +7,6 @@ import Exit from './Exit';
 
 const Drawer = createDrawerNavigator();
 
-
 export default function LoginToLandPage({navigation, route}){
 
     return(
@@ -15,8 +14,8 @@ export default function LoginToLandPage({navigation, route}){
                 <Drawer.Screen name="AdmLandingPage" component={AdmLandingPage} initialParams={{funcLogarB : route.params.funcLogar}}/>
                 <Drawer.Screen name="AddCar" component={AddCar}/>
                 <Drawer.Screen name="SearchCar" component={SearchCar}/>
+                <Drawer.Screen name="CadFunc" component={CadFunc}/>
                 <Drawer.Screen name="Sair" component={Exit} initialParams={{funcLogarB : route.params.funcLogar}}/>
             </Drawer.Navigator>
-        
     );
 }

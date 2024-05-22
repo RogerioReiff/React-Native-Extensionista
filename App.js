@@ -18,7 +18,7 @@ export default function App() {
   return (
    logged?(
     <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator initialRouteName={LoginToLandPage}>
           <Tab.Screen name="AddCar" component={AddCar}/>
           <Tab.Screen name="LoginToLandPage" component={LoginToLandPage} options={{headerShown:false}} initialParams={{funcLogar : setLogged}}/>
           <Tab.Screen name="SearchCar" component={SearchCar}/>
