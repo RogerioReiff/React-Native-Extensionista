@@ -5,7 +5,6 @@ import * as Crypto from 'expo-crypto';
 
 export default function Login({navigation, route}){
 
-    //TODO: O iCPF e iPswd retorno primeiro o valor nulo e depois o valor digitado pelo usuario, para CONSERTAR
 
     const [iCPF, setInputCPF] = useState('');
     const [iPswd, setInputPswd] = useState('');
