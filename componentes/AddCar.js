@@ -20,7 +20,6 @@ export default function AddCar(){
 
     const add = async () => {
         try {
-            // Ler o conteúdo atual do arquivo
             let carros = [];
             const carStr = await FileSystem.readAsStringAsync(path);
             if (carStr) {
