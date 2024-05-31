@@ -77,7 +77,7 @@ export default function Login({navigation, route}){
             <Text style={styles.textBox}>Senha</Text>
             <TextInput style={styles.inputBox} placeholder="Senha" /* secureTextEntry */ onChangeText={(value)=>{setInputPswd(value)}} autoCorrect={false} autoCapitalize='none'/>
 
-            <Button title='Logar' style={{paddingTop: 10, margin: 15, alignItems: 'center', height:40}} onPress={getData}/>
+            <Button title='Logar' style={{paddingTop: 40, margin: 15, alignItems: 'center', height:40, marginTop: 30}} onPress={getData}/>
 
         </View>
     );
@@ -88,12 +88,14 @@ export default function Login({navigation, route}){
 const styles = StyleSheet.create({
     Container:{
         flex: 1,
-        alignContent: 'center'
+        alignContent: 'center',
+        padding: 12,
     },
     Logo:{
         width: 50,
         height: 50,
         paddingBottom: 10,
+        justifycontent:'center',
     },
     textTitle:{
         paddingTop: 20,
@@ -101,19 +103,31 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         fontSize: 30,
         fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: 30,
     },
     textBox:{
-        paddingBottom: 10,
+        paddingBottom: 5,
         paddingLeft: 10,
         fontSize: 20,
         fontWeight: 'bold',
     }, 
     inputBox:{
         paddingLeft: 10,
-        paddingBottom: 20,
         borderWidth: 2,
         borderColor: 'grey',
         borderRadius: 6,
+        height:30,
+        marginBottom: 20,
+
+    },
+    inputBox:{
+        paddingLeft: 10,
+        borderWidth: 2,
+        borderColor: 'grey',
+        borderRadius: 6,
+        height:30,
+        marginBottom: 20,
 
     },
 
