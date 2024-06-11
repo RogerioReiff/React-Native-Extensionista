@@ -11,7 +11,7 @@ export default function ListaCarros({ route, navigation }) {
       try {
         let path = FileSystem.documentDirectory + 'carros.json';
         const carrosData = await FileSystem.readAsStringAsync(path);
-        console.log('Dados do arquivo JSON:', carrosData); // Exibir dados do arquivo JSON no console
+        console.log('Dados do arquivo JSON:', carrosData);
         const parsedCarrosData = JSON.parse(carrosData);
         const filteredCarros = parsedCarrosData.filter(item => item.estado === selectedEstado);
         setCarros(filteredCarros);
