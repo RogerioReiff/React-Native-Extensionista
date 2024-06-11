@@ -7,9 +7,10 @@ import SearchCar from './SearchCars'
 import Exit from './Exit';
 import ListaCarros from './ListaCarros';
 import InfoCars from './InfoCars';
+import Historico from './Historico';
 
 const Drawer = createDrawerNavigator();
-const Stack = createStackNavigator();
+const Stack = createStackNavigator(); 
 
 
 function AdmLandingPageStack() {
@@ -18,6 +19,7 @@ function AdmLandingPageStack() {
         <Stack.Screen name="AdmLandingPage" component={AdmLandingPage} />
         <Stack.Screen name="ListaCarros" component={ListaCarros} />
         <Stack.Screen name="InfoCars" component={InfoCars} />
+        <Stack.Screen name="Historico" component={Historico} />
       </Stack.Navigator>
     );
   }
