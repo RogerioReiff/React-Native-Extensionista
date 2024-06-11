@@ -1,17 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import * as FileSystem from 'expo-file-system';
 
 export default function ListaCarros({ route, navigation }) {
   const { selectedEstado } = route.params;
-  const [carros, setCarros] = useState([
-    { id: 1, Marca: 'Toyota', Modelo: 'Corolla', Ano: 2020 },
-    { id: 2, Marca: 'Honda', Modelo: 'Civic', Ano: 2019 },
-    { id: 3, Marca: 'Ford', Modelo: 'Focus', Ano: 2018 },
-    { id: 4, Marca: 'Chevrolet', Modelo: 'Cruze', Ano: 2021 },
-  ]);
+  const [carros, setCarros] = useState([]);
+
+  useEffect(() => {
+    const fetchCarros = async () => {
+      try {
+        let path = FileSystem.documentDirectory + 'carros.json';
+        const carrosData = await FileSystem.readAsStringAsync(path);
+        console.log('Dados do arquivo JSON:', carrosData); // Exibir dados do arquivo JSON no console
+        const parsedCarrosData = JSON.parse(carrosData);
+        const filteredCarros = parsedCarrosData.filter(item => item.estado === selectedEstado);
+        setCarros(filteredCarros);
+      } catch (error) {
+        console.error('Erro ao ler carros.json:', error);
+      }
+    };
+
+    fetchCarros();
+  }, [selectedEstado]);
 
   const navigateToInfoCar = (carro) => {
-    navigation.navigate('InfoCar', { carro });
+    navigation.navigate('InfoCars', { carro });
   };
 
   return (
@@ -21,13 +34,10 @@ export default function ListaCarros({ route, navigation }) {
         data={carros}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => navigateToInfoCar(item)} style={styles.itemContainer}>
-            <Text>Marca: {item.Marca}</Text>
-            <Text>Modelo: {item.Modelo}</Text>
-            <Text>Ano: {item.Ano}</Text>
-            {/* Adicione mais informações conforme necessário */}
+            <Text>Marca: {item.nome} - {item.placa} - {item.modelo}</Text>
           </TouchableOpacity>
         )}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={(item, index) => index.toString()} // Use index como chave
       />
     </View>
   );
@@ -51,39 +61,6 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     padding: 10,
     borderRadius: 5,
+    Width:50,
   },
 });
-
-
-
-
-
-
-
-
-{/*import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function ListaCarros({ route }) {
-  const { selectedEstado } = route.params;
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Carros na Oficina - {selectedEstado}</Text>
-
-      
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'top',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-});*/}
