@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView, Alert } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 import {Picker} from '@react-native-picker/picker';
-
-//POSSIVELMENTE MUDAR O ESTADO PARA UMA ESCOLHA EM VEZ DE TEXT INPUT
-//O CÓDIGO SÓ RETORNA O ÚLTIMO CARRO ADICIONADO, NÃO SEI SE ELE SOBESCREVE O OUTRO OU SE SÓ RETORNA MESMO
 
 export default function AddCar(){
 
@@ -52,13 +49,17 @@ export default function AddCar(){
     
             const cpfExistente = carros.some(carro => carro.cpf === novoCarro.cpf && carro.placa === novoCarro.placa );
             if (cpfExistente) {
-                console.log("Já existe um carro com esse CPF.");
+                Alert.alert('ALERTA!', "Já existe um carro com esse CPF.", 
+                  [
+                    {text: 'OK', onPress: () => console.log('alert closed')}
+                  ]);
                 return; 
             }  
             
             carros.push(novoCarro);    
            
             await FileSystem.writeAsStringAsync(path, JSON.stringify(carros), { encoding: FileSystem.EncodingType.UTF8 });
+
         } catch (err) {
             console.log(err);
         }
@@ -100,7 +101,7 @@ export default function AddCar(){
             <TextInput placeholder="12-ABC-34" style={style.input} onChangeText={(value) => {setPlaca(value)}} autoCorrect={false} autoCapitalize='none'/>
 
             <Text>Estado</Text>
-            {/*<TextInput placeholder="Em manutenção" onChangeText={(value) => {setEstado(value)}} autoCorrect={false} autoCapitalize='none'/>*/}
+        
             <Picker
                 selectedValue={estado}
                 style={style.picker}
