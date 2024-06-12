@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 import {Picker} from '@react-native-picker/picker';
@@ -17,6 +17,20 @@ export default function AddCar(){
     const [placa, setPlaca] = useState('');
     const [estado, setEstado] = useState('');
     const [descricao, setDescricao] = useState('');
+
+    const checkIfExists = async ()=>{
+        try{
+            await FileSystem.readAsStringAsync(path);
+        }
+        catch(error){
+            let blank = [];
+            await FileSystem.writeAsStringAsync(path, JSON.stringify(blank), {encoding: FileSystem.EncodingType.UTF8});
+        }
+    }
+
+    useEffect(()=>{
+        checkIfExists()
+    },[]);
 
     const add = async () => {
         try {
