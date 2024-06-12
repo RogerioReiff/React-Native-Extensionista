@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 
@@ -65,26 +65,30 @@ export default function Login({navigation, route}){
 
 
     return(
-        <View style={styles.Container}>
-            <Image style={styles.Logo}
-            source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}/>
+        <TouchableWithoutFeedback onPress={() => {
+            Keyboard.dismiss();
+            console.log('dismissed keyboard');
+            }}>
+            <View style={styles.Container}>
+                <Image style={styles.Logo}
+                source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}/>
 
-            <Text style={styles.textTitle}>Login</Text>
+                <Text style={styles.textTitle}>Login</Text>
 
-            <Text style={styles.textBox}>CPF</Text>
-            <TextInput style={styles.inputBox} placeholder="000.000.000-00" onChangeText={(value) => {setInputCPF(value)}} autoCorrect={false} autoCapitalize='none'/>
+                <Text style={styles.textBox}>CPF</Text>
+                <TextInput style={styles.inputBox} placeholder="000.000.000-00" onChangeText={(value) => {setInputCPF(value)}} autoCorrect={false} autoCapitalize='none'/>
 
-            <Text style={styles.textBox}>Senha</Text>
-            <TextInput style={styles.inputBox} placeholder="Senha" /* secureTextEntry */ onChangeText={(value)=>{setInputPswd(value)}} autoCorrect={false} autoCapitalize='none'/>
+                <Text style={styles.textBox}>Senha</Text>
+                <TextInput style={styles.inputBox} placeholder="Senha" secureTextEntry onChangeText={(value)=>{setInputPswd(value)}} autoCorrect={false} autoCapitalize='none'/>
 
-            <Button title='Logar' style={{paddingTop: 40, margin: 15, alignItems: 'center', height:40, marginTop: 30}} onPress={getData}/>
+                <Button title='Logar' style={{paddingTop: 40, margin: 15, alignItems: 'center', height:40, marginTop: 30}} onPress={getData}/>
 
-        </View>
+            </View>
+        </TouchableWithoutFeedback>
     );
 }
 
 
-//TODO: MELHORAR A UI?
 const styles = StyleSheet.create({
     Container:{
         flex: 1,
@@ -92,8 +96,9 @@ const styles = StyleSheet.create({
         padding: 12,
     },
     Logo:{
-        width: 50,
-        height: 50,
+        width: 70,
+        height: 70,
+        left: 150,
         paddingBottom: 10,
         justifycontent:'center',
     },
@@ -117,18 +122,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'grey',
         borderRadius: 6,
-        height:30,
+        height:40,
         marginBottom: 20,
 
     },
-    inputBox:{
-        paddingLeft: 10,
-        borderWidth: 2,
-        borderColor: 'grey',
-        borderRadius: 6,
-        height:30,
-        marginBottom: 20,
-
-    },
-
 })

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Text, TextInput, Button, StyleSheet, Alert, Linking } from 'react-native';
+import { View, ScrollView, Text, TextInput, Button, StyleSheet, Alert, Linking, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import * as FileSystem from 'expo-file-system';
 
@@ -106,70 +106,75 @@ const InfoCar = ({ route, navigation }) => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <MaterialIcons name='arrow-back' size={24} style={{...styles.close}} onPress={()=>{navigation.navigate("AdmLandingPageS")}}/>
-      <Text>CPF do Cliente:</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="CPF"
-        value={carro.cpf}
-        editable={false}
-      />
-      <Text>Modelo do Carro:</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Modelo"
-        value={carro.modelo}
-        editable={false}
-      />
-      <Text>Placa do Carro:</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Placa"
-        value={carro.placa}
-        editable={false}
-      />
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Histórico"
-          onPress={() => handleHistoricoPress(carro)}
+    <TouchableWithoutFeedback onPress={() => {
+      Keyboard.dismiss();
+      console.log('dismissed keyboard');
+      }}>
+      <ScrollView style={styles.container}>
+        <MaterialIcons name='arrow-back' size={24} style={{...styles.close}} onPress={()=>{navigation.navigate("AdmLandingPageS")}}/>
+        <Text>CPF do Cliente:</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="CPF"
+          value={carro.cpf}
+          editable={false}
+        />
+        <Text>Modelo do Carro:</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Modelo"
+          value={carro.modelo}
+          editable={false}
+        />
+        <Text>Placa do Carro:</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Placa"
+          value={carro.placa}
+          editable={false}
+        />
+        <View style={styles.buttonContainer}>
+          <Button
+            title="Histórico"
+            onPress={() => handleHistoricoPress(carro)}
+          />
+          <Button
+            title="Câmera"
+            onPress={handleOpenCamera}
+          />
+        </View>
+        <Text>Estado na oficina:</Text>
+        <Picker
+          selectedValue={estado}
+          style={styles.picker}
+          onValueChange={(itemValue) =>
+            handleEstadoChange(itemValue)
+          }>
+          <Picker.Item label="Entregue" value="Entregue" />
+          <Picker.Item label="Prontos" value="Prontos" />
+          <Picker.Item label="Em Conserto" value="Em Conserto" />
+          <Picker.Item label="Em Orçamento" value="Em Orçamento" />
+          <Picker.Item label="Esperando Orçamento" value="Esperando Orçamento" />
+        </Picker>
+        <Text>Descrição do problema:</Text>
+        <TextInput
+          style={styles.inputdescricao}
+          placeholder="Descrição"
+          onChangeText={handleDescricaoChange}
+          editable={true}
+          multiline
         />
         <Button
-          title="Câmera"
-          onPress={handleOpenCamera}
+          title="Enviar"
+          onPress={handleSubmit}
         />
-      </View>
-      <Text>Estado na oficina:</Text>
-      <Picker
-        selectedValue={estado}
-        style={styles.picker}
-        onValueChange={(itemValue) =>
-          handleEstadoChange(itemValue)
-        }>
-        <Picker.Item label="Entregue" value="Entregue" />
-        <Picker.Item label="Prontos" value="Prontos" />
-        <Picker.Item label="Em Conserto" value="Em Conserto" />
-        <Picker.Item label="Em Orçamento" value="Em Orçamento" />
-        <Picker.Item label="Esperando Orçamento" value="Esperando Orçamento" />
-      </Picker>
-      <Text>Descrição do problema:</Text>
-      <TextInput
-        style={styles.inputdescricao}
-        placeholder="Descrição"
-        onChangeText={handleDescricaoChange}
-        editable={true}
-        multiline
-      />
-      <Button
-        title="Enviar"
-        onPress={handleSubmit}
-      />
-      <Button
-        title="Excluir"
-        onPress={handleDelete}
-        color="red"
-      />
-    </ScrollView>
+        <Button
+          title="Excluir"
+          onPress={handleDelete}
+          color="red"
+        />
+      </ScrollView>
+      </TouchableWithoutFeedback>
   );
 };
 

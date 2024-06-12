@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ScrollView, Alert } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 import {Picker} from '@react-native-picker/picker';
 
@@ -90,41 +90,46 @@ export default function AddCar(){
 
     return(
 
-        <ScrollView style={style.form}> 
-            <Text style={style.titulo}>Adicionar Carros</Text>
+        <TouchableWithoutFeedback onPress={() => {
+            Keyboard.dismiss();
+            console.log('dismissed keyboard');
+            }}>
+            <ScrollView style={style.form}> 
+                <Text style={style.titulo}>Adicionar Carros</Text>
 
-            <Text>Nome Cliente</Text>
-            <TextInput placeholder="Nome do Cliente" style={style.input} onChangeText={(value) => {setNome(value)}} autoCorrect={false} autoCapitalize='none'/>
+                <Text>Nome Cliente</Text>
+                <TextInput placeholder="Nome do Cliente" style={style.input} onChangeText={(value) => {setNome(value)}} autoCorrect={false} autoCapitalize='none'/>
 
-            <Text>CPF Cliente</Text>
-            <TextInput placeholder="000.000.000-00" style={style.input} onChangeText={(value) => {setCPF(value)}} autoCorrect={false} autoCapitalize='none'/>
+                <Text>CPF Cliente</Text>
+                <TextInput placeholder="000.000.000-00" style={style.input} onChangeText={(value) => {setCPF(value)}} autoCorrect={false} autoCapitalize='none'/>
+                
+                <Text>Modelo</Text>
+                <TextInput placeholder="Fiat" style={style.input} onChangeText={(value) => {setModelo(value)}} autoCorrect={false} autoCapitalize='none'/>
+
+                <Text>Placa do Carro</Text>
+                <TextInput placeholder="12-ABC-34" style={style.input} onChangeText={(value) => {setPlaca(value)}} autoCorrect={false} autoCapitalize='none'/>
+
+                <Text>Estado</Text>
             
-            <Text>Modelo</Text>
-            <TextInput placeholder="Fiat" style={style.input} onChangeText={(value) => {setModelo(value)}} autoCorrect={false} autoCapitalize='none'/>
+                <Picker
+                    selectedValue={estado}
+                    style={style.picker}
+                    onValueChange={(itemValue, itemIndex) =>
+                        setEstado(itemValue)
+                    }>
+                    <Picker.Item label="Prontos" value="Prontos" />
+                    <Picker.Item label="Em Conserto" value="Em Conserto" />
+                    <Picker.Item label="Em Orçamento" value="Em Orçamento" />
+                    <Picker.Item label="Esperando Orçamento" value="Esperando Orçamento" />
+                </Picker>
 
-            <Text>Placa do Carro</Text>
-            <TextInput placeholder="12-ABC-34" style={style.input} onChangeText={(value) => {setPlaca(value)}} autoCorrect={false} autoCapitalize='none'/>
+                <Text>Descrição</Text>
+                <TextInput placeholder="Descrição das alterações" style={style.descricao} onChangeText={(value) => {setDescricao(value)}} autoCorrect={false} autoCapitalize='none'/>
 
-            <Text>Estado</Text>
-        
-            <Picker
-                selectedValue={estado}
-                style={style.picker}
-                onValueChange={(itemValue, itemIndex) =>
-                    setEstado(itemValue)
-                }>
-                <Picker.Item label="Prontos" value="Prontos" />
-                <Picker.Item label="Em Conserto" value="Em Conserto" />
-                <Picker.Item label="Em Orçamento" value="Em Orçamento" />
-                <Picker.Item label="Esperando Orçamento" value="Esperando Orçamento" />
-            </Picker>
-
-            <Text>Descrição</Text>
-            <TextInput placeholder="Descrição das alterações" style={style.descricao} onChangeText={(value) => {setDescricao(value)}} autoCorrect={false} autoCapitalize='none'/>
-
-            <Button title='adicionar' onPress={add}/>
-            <Button title='ler' onPress={ler}/>
-        </ScrollView>
+                <Button title='adicionar' onPress={add}/>
+                <Button title='ler' onPress={ler}/>
+            </ScrollView>
+        </TouchableWithoutFeedback>
     );
 
 }
@@ -132,7 +137,8 @@ export default function AddCar(){
 const style = StyleSheet.create({
 
     form:{
-      padding: 12
+      padding: 20,
+      flex: 1,
     },
 
     titulo:{
@@ -144,21 +150,24 @@ const style = StyleSheet.create({
     descricao:{
       height:200,
       borderColor: "gray",
-      borderWidth: 1,
+      borderWidth: 2,
       marginBottom: 10,
-      textAlignVertical: 'top'
+      textAlignVertical: 'top',
+      paddingLeft: 5,
     },    
 
     input:{
-      height:20,
+      paddingLeft: 5,
+      height:30,
       borderColor: "gray",
-      borderWidth: 1,
-      marginBottom: 10,
+      borderWidth: 2,
+      borderRadius: 6,
+      marginBottom: 20,
     },
     picker: {
         height: 10,
         borderColor: "gray",
-        borderWidth: 1,
+        borderWidth: 2,
         marginBottom: 10,
     }
 
