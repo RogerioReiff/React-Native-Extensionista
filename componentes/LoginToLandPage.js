@@ -3,7 +3,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AdmLandingPage from './AdmLandingPage';
 import CadFunc from './CadFunc';
 import AddCar from './AddCar';
-import SearchCar from './SearchCars'
 import Exit from './Exit';
 import ListaCarros from './ListaCarros';
 import InfoCars from './InfoCars';
@@ -30,7 +29,6 @@ export default function LoginToLandPage({navigation, route}){
             <Drawer.Navigator>
                 <Drawer.Screen name="AdmLandingPage" component={AdmLandingPageStack} initialParams={{funcLogarB : route.params.funcLogar}}/>
                 <Drawer.Screen name="AddCar" component={AddCar}/>
-                <Drawer.Screen name="SearchCar" component={SearchCar}/>
                 <Drawer.Screen name="CadFunc" component={CadFunc}/>
                 <Drawer.Screen name="Sair" component={Exit} initialParams={{funcLogarB : route.params.funcLogar}}/>
             </Drawer.Navigator>

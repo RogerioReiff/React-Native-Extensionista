@@ -60,6 +60,11 @@ export default function AddCar(){
            
             await FileSystem.writeAsStringAsync(path, JSON.stringify(carros), { encoding: FileSystem.EncodingType.UTF8 });
 
+            Alert.alert('ADICIONADO!', "O Carro foi adicionado com sucesso!", 
+                  [
+                    {text: 'OK', onPress: () => console.log('alert closed')}
+                  ]);
+
         } catch (err) {
             console.log(err);
         }
