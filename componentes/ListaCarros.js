@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import * as FileSystem from 'expo-file-system';
+import {MaterialIcons} from '@expo/vector-icons';
 
 export default function ListaCarros({ route, navigation }) {
   const { selectedEstado } = route.params;
@@ -30,6 +31,7 @@ export default function ListaCarros({ route, navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Carros na Oficina - {selectedEstado}</Text>
+      <MaterialIcons name='arrow-back' size={24} style={{...styles.close}} onPress={()=>{navigation.navigate("AdmLandingPageS")}}/>
       <FlatList
         data={carros}
         renderItem={({ item }) => (
@@ -63,4 +65,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     Width:50,
   },
+  close: {
+      position: 'relative',
+      marginTop: 20,
+      marginBottom: 0,
+      bottom: 63,
+      right: 175,
+  }
 });

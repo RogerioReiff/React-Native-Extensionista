@@ -7,6 +7,7 @@ export default function Historico({ route }) {
 
   return (
     <ScrollView>
+      <MaterialIcons name='arrow-back' size={24} style={{...styles.close}} onPress={()=>{navigation.navigate("AdmLandingPageS")}}/>
       <Text>Descrição do problema:</Text>
       <TextInput
         style={styles.input}
@@ -28,4 +29,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     textAlignVertical: 'top',
   },
+  close: {
+    position: 'relative',
+    marginTop: 20,
+    marginBottom: 0,
+    bottom: 63,
+    right: 175,
+}
 });

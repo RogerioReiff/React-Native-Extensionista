@@ -107,6 +107,7 @@ const InfoCar = ({ route, navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
+      <MaterialIcons name='arrow-back' size={24} style={{...styles.close}} onPress={()=>{navigation.navigate("AdmLandingPageS")}}/>
       <Text>CPF do Cliente:</Text>
       <TextInput
         style={styles.input}
@@ -203,6 +204,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 10,
   },
+  close: {
+    position: 'relative',
+    marginTop: 20,
+    marginBottom: 0,
+    bottom: 63,
+    right: 175,
+}
 });
 
 export default InfoCar;
