@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 
@@ -14,9 +14,17 @@ export default function CadFunc(){
         const digest = await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, iPswd);
         var user = {NAME: iName, PASSWORD: digest}
         await AsyncStorage.setItem(iCPF, JSON.stringify(user));
+        Alert.alert('Parabéns!', 'Funcionario cadastrado!',
+        [
+          {text: 'OK', onPress: () => console.log('alert closed')}
+        ]); 
     }
     catch(error){
         console.log(error)
+        Alert.alert('ERRO!', error,
+        [
+          {text: 'OK', onPress: () => console.log('alert closed')}
+        ]); 
     }
 }
 
