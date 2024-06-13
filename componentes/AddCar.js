@@ -148,7 +148,7 @@ const style = StyleSheet.create({
     },    
 
     descricao:{
-      height:200,
+      height:190,
       borderColor: "gray",
       borderWidth: 2,
       marginBottom: 10,
@@ -162,13 +162,13 @@ const style = StyleSheet.create({
       borderColor: "gray",
       borderWidth: 2,
       borderRadius: 6,
-      marginBottom: 20,
+      marginBottom: 10,
     },
     picker: {
         height: 10,
         borderColor: "gray",
         borderWidth: 2,
-        marginBottom: 10,
+        marginBottom: 5,
     }
 
 
