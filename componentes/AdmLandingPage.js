@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert, Linking } from 'react-native';
 
 export default function AdmLandingPage({ navigation }) {
   const [selectedEstado, setSelectedEstado] = useState('');
@@ -8,6 +8,25 @@ export default function AdmLandingPage({ navigation }) {
     setSelectedEstado(Estado);
     navigation.navigate('ListaCarros', { selectedEstado: Estado });
   };
+
+  const whtApp = ()=>{
+    var mess = 'Olá! Gostaria de pedir ajuda com algo de sua loja!'
+    Linking.canOpenURL("whatsapp://send?text=oi").then(supported =>{
+      if (supported){
+        return Linking.openURL(`whatsapp://send?phone=5521964976582&text=${mess}`);
+      }
+      else{
+        return Linking.openURL(`https://api.whatsapp.com/send?phone=5521964976582&text=${mess}`)
+      }
+    })
+  }
+
+  const checkIfSure = ()=>{
+    Alert.alert('ATENÇÃO!', 'Se você pressionar OK o app vai enviar uma mensagem via WhatsApp para a OFICINA', [
+      {text: 'OK', onPress: () => whtApp()},
+      {text: 'FECHAR', onPress: () => console.log('alert closed')}
+    ])
+  }
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
@@ -31,6 +50,9 @@ export default function AdmLandingPage({ navigation }) {
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => handleEstadoSelection('Esperando Orçamento')}>
         <Text>Esperando Orçamento</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => checkIfSure()}>
+        <Text>Ajuda</Text>
       </TouchableOpacity>
     </View>
   );
