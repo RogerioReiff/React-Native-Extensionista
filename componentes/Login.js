@@ -32,6 +32,20 @@ export default function Login({navigation, route}){
         }
      }
 
+    const checkIfAdmin = async()=>{
+        try{
+            if(iCPF === 'Admin'){
+                await AsyncStorage.setItem('CheckAdmin', JSON.stringify('1'));
+            }
+            else{
+                await AsyncStorage.setItem('CheckAdmin', JSON.stringify('0'));
+            }
+        }
+        catch(error){
+            console.log(error)
+        }  
+    }
+
      useEffect(()=>{
         checkIfExists()
     },[]);
@@ -55,6 +69,7 @@ export default function Login({navigation, route}){
             valPswd = value.PASSWORD;
 
            if(valCPF === iCPF && valPswd === digest){
+            checkIfAdmin();
             route.params.funcLogar(true)
            }else{
             alert("Login invalido")
