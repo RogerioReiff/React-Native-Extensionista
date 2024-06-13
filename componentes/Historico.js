@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, ScrollView, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import {MaterialIcons} from '@expo/vector-icons';
 
 export default function Historico({ route }) {
   const { carro } = route.params;

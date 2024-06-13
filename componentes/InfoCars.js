@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, ScrollView, Text, TextInput, Button, StyleSheet, Alert, Linking, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import * as FileSystem from 'expo-file-system';
+import {MaterialIcons} from '@expo/vector-icons';
 
 const InfoCar = ({ route, navigation }) => {
   const { carro } = route.params;
