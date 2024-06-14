@@ -10,7 +10,7 @@ export default function AdmLandingPage({ navigation }) {
   };
 
   const whtApp = ()=>{
-    var mess = 'Olá! Gostaria de pedir ajuda com algo de sua loja!'
+    var mess = 'Olá! Gostaria de pedir ajuda com o aplicativo!'
     Linking.canOpenURL("whatsapp://send?text=oi").then(supported =>{
       if (supported){
         return Linking.openURL(`whatsapp://send?phone=5521964976582&text=${mess}`);
@@ -22,7 +22,7 @@ export default function AdmLandingPage({ navigation }) {
   }
 
   const checkIfSure = ()=>{
-    Alert.alert('ATENÇÃO!', 'Se você pressionar OK o app vai enviar uma mensagem via WhatsApp para a OFICINA', [
+    Alert.alert('ATENÇÃO!', 'Se você pressionar OK o app vai enviar uma mensagem via WhatsApp para os desenvolvedores. Deseja continuar?', [
       {text: 'OK', onPress: () => whtApp()},
       {text: 'FECHAR', onPress: () => console.log('alert closed')}
     ])
